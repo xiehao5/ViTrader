@@ -1145,6 +1145,7 @@ int goto_symbol_window_from_mainboard()
 
   return 0;
 }
+
 int goto_order_window_from_mainboard()
 {
   if(vDepthMarketDatas.size() == 0)
@@ -1228,6 +1229,7 @@ int move_forward_1_page()
 
   return 0;
 }
+
 int move_backward_1_page()
 {
   int i;
@@ -1239,6 +1241,7 @@ int move_backward_1_page()
 
   return 0;
 }
+
 int move_forward_half_page()
 {
   int i;
@@ -1250,6 +1253,7 @@ int move_forward_half_page()
 
   return 0;
 }
+
 int move_backward_half_page()
 {
   int i;
@@ -1261,6 +1265,7 @@ int move_backward_half_page()
 
   return 0;
 }
+
 int goto_page_top()
 {
   if(vDepthMarketDatas.size() == 0)
@@ -1282,6 +1287,7 @@ int goto_page_top()
 
   return 0;
 }
+
 int goto_page_bottom()
 {
   if(vDepthMarketDatas.size() == 0)
@@ -1315,6 +1321,7 @@ int goto_page_bottom()
 
   return 0;
 }
+
 int goto_page_middle()
 {
   if(vDepthMarketDatas.size() == 0)
@@ -1394,6 +1401,7 @@ int scroll_forward_1_line()
 
   return 0;
 }
+
 int scroll_backward_1_line()
 {
   if(vDepthMarketDatas.size() == 0)
@@ -1476,6 +1484,7 @@ int move_forward_1_line()
 
   return 0;
 }
+
 int scroll_left_1_column()
 {
   if(curr_col_pos == 2)
@@ -1499,6 +1508,7 @@ int scroll_left_1_column()
 
   return 0;
 }
+
 int scroll_right_1_column()
 {
   if(curr_col_pos == sizeof(column_items) / sizeof(column_item_t) - 1)
@@ -1564,6 +1574,7 @@ int move_backward_1_line()
 
   return 0;
 }
+
 int goto_file_top()
 {
   if(vDepthMarketDatas.size() == 0)
@@ -1608,6 +1619,7 @@ int goto_file_top()
 
   return 0;
 }
+
 int goto_file_bottom()
 {
   if(vDepthMarketDatas.size() == 0)
@@ -1707,6 +1719,7 @@ CTradeRsp::CTradeRsp()
   memset(BrokerID, 0x00, sizeof(BrokerID));
   memset(TradingDay, 0x00, sizeof(TradingDay));
 }
+
 CTradeRsp::~CTradeRsp()
 {
 }
@@ -1716,6 +1729,7 @@ void CTradeRsp::OnFrontConnected()
 {
   post_task(std::bind(&CTradeRsp::HandleFrontConnected, this));
 }
+
 //未连接
 void CTradeRsp::OnFrontDisconnected(int nReason)
 {
@@ -2010,34 +2024,42 @@ CMarketRsp::CMarketRsp()
   memset(Password, 0x00, sizeof(Password));
   memset(BrokerID, 0x00, sizeof(BrokerID));
 }
+
 CMarketRsp::~CMarketRsp()
 {
 
 }
+
 void CMarketRsp::OnFrontConnected()
 {
   post_task(std::bind(&CMarketRsp::HandleFrontConnected, this));
 }
+
 void CMarketRsp::OnFrontDisconnected(int nReason)
 {
   post_task(std::bind(&CMarketRsp::HandleFrontDisconnected, this, nReason));
 }
+
 void CMarketRsp::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
   post_task(std::bind(&CMarketRsp::HandleRspUserLogin, this, *pRspUserLogin, *pRspInfo, nRequestID, bIsLast));
 }
+
 void CMarketRsp::OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
   post_task(std::bind(&CMarketRsp::HandleRspUserLogout, this, *pUserLogout, *pRspInfo, nRequestID, bIsLast));
 }
+
 void CMarketRsp::OnRspSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 
 }
+
 void CMarketRsp::OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 
 }
+
 //行情服务的深度行情通知
 void CMarketRsp::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData)
 {
@@ -2361,6 +2383,7 @@ void order_display_quotation(const char *InstrumentID)
     order_corner_redraw();
   }
 }
+
 void display_column(int col)
 {
   int i, y, x;
@@ -2465,6 +2488,7 @@ void display_status()
   mvprintw(y - 1, 15, "%s", status_message);
   mvprintw(y - 1, x - 25, "%s %s", pTradeRsp->UserID, tradetime);
 }
+
 void order_display_status()
 {
   int y, x;
@@ -2612,6 +2636,7 @@ void column_settings_display_status()
 
   mvprintw(y - 1, x - 25, "%s %s", pTradeRsp->UserID, tradetime);
 }
+
 void symbol_display_status()
 {
   int y, x;
@@ -2754,6 +2779,7 @@ void refresh_screen()
     mvchgat(curr_line, 0, -1, A_REVERSE, 0, NULL);
   }
 }
+
 void order_refresh_screen()
 {
   int y, x;
@@ -2777,6 +2803,7 @@ void order_refresh_screen()
   order_is_moving = 0;
   order_redraw();
 }
+
 void order_goto_file_top()
 {
   if(order_symbol_index < 0)
@@ -2797,6 +2824,7 @@ void order_goto_file_top()
 
   order_redraw();
 }
+
 void order_goto_file_bottom()
 {
   if(order_symbol_index < 0)
@@ -2862,6 +2890,7 @@ void order_goto_page_top()
   order_curr_price = order_page_top_price;
   order_redraw();
 }
+
 void order_goto_page_bottom()
 {
   if(order_symbol_index < 0)
@@ -2897,6 +2926,7 @@ void order_goto_page_bottom()
 
   order_redraw();
 }
+
 void order_goto_page_middle()
 {
   if(order_symbol_index < 0)
@@ -2986,6 +3016,7 @@ void order_scroll_forward_1_line()
 
   order_redraw();
 }
+
 void order_scroll_backward_1_line()
 {
   if(order_symbol_index < 0)
@@ -3038,6 +3069,7 @@ void order_scroll_backward_1_line()
 
   order_redraw();
 }
+
 int order_move_forward_1_page()
 {
   int i;
@@ -3049,6 +3081,7 @@ int order_move_forward_1_page()
 
   return 0;
 }
+
 int order_move_backward_1_page()
 {
   int i;
@@ -3060,6 +3093,7 @@ int order_move_backward_1_page()
 
   return 0;
 }
+
 int order_move_forward_half_page()
 {
   int i;
@@ -3071,6 +3105,7 @@ int order_move_forward_half_page()
 
   return 0;
 }
+
 int order_move_backward_half_page()
 {
   int i;
@@ -3124,6 +3159,7 @@ void order_centralize_current_price()
 
   order_redraw();
 }
+
 int order_refresh_quote()
 {
   int i;
@@ -3316,6 +3352,7 @@ void order_redraw()
   order_display_status();
   order_display_focus();
 }
+
 void order_display_prices()
 {
   if(order_symbol_index < 0)
@@ -3353,6 +3390,7 @@ void order_display_prices()
     }
   }
 }
+
 void order_display_orders()
 {
   if(order_symbol_index < 0)
@@ -3751,6 +3789,7 @@ void order_display_focus()
   //	mvchgat(i+2,33,10,A_REVERSE,0,NULL);
   //}
 }
+
 void order_move_orders()
 {
   order_moving_at_price = order_curr_price;
@@ -3858,6 +3897,7 @@ void order_move_complete()
 
   order_is_moving = 0;
 }
+
 void order_buy_at_market(unsigned int n)
 {
   if(order_symbol_index < 0)
@@ -3876,6 +3916,7 @@ void order_buy_at_market(unsigned int n)
   order_buy_at_limit_price(UpperLimitPrice, n);
   order_redraw();
 }
+
 void order_sell_at_market(unsigned int n)
 {
   if(order_symbol_index < 0)
@@ -3894,11 +3935,13 @@ void order_sell_at_market(unsigned int n)
   order_sell_at_limit_price(LowerLimitPrice, n);
   order_redraw();
 }
+
 void order_buy_at_limit(unsigned int n)
 {
   order_buy_at_limit_price(order_curr_price, n);
   order_redraw();
 }
+
 void order_buy_at_limit_price(double price, unsigned int n)
 {
   if(order_symbol_index < 0)
@@ -3945,11 +3988,13 @@ void order_buy_at_limit_price(double price, unsigned int n)
 
 // 	vInputingOrders.push_back(Req);
 }
+
 void order_sell_at_limit(unsigned int n)
 {
   order_sell_at_limit_price(order_curr_price, n);
   order_redraw();
 }
+
 void order_revert_at_limit()
 {
   int nPosi = 0, nBuyPosi = 0, nSellPosi = 0;
@@ -3982,6 +4027,7 @@ void order_revert_at_limit()
 
   order_redraw();
 }
+
 void order_revert_at_market()
 {
   if(order_symbol_index < 0)
@@ -4080,6 +4126,7 @@ void order_sell_at_limit_price(double price, unsigned int n)
 
 // 	vInputingOrders.push_back(Req);
 }
+
 int OrderInsert(const char *InstrumentID, char BSFlag, char OCFlag, double Price, unsigned int Qty)
 {
   CThostFtdcTraderApi *pTradeReq;
@@ -4231,11 +4278,13 @@ int OrderInsert(const char *InstrumentID, char BSFlag, char OCFlag, double Price
 
   return 0;
 }
+
 void order_cancel_orders()
 {
   order_cancel_orders_at_price(order_curr_price);
   order_redraw();
 }
+
 void order_cancel_orders_at_price(double price)
 {
   if(order_symbol_index < 0)
@@ -4308,6 +4357,7 @@ void order_cancel_orders_at_price(double price)
     }
   }
 }
+
 void order_cancel_all_orders()
 {
   if(order_symbol_index < 0)
@@ -5022,6 +5072,7 @@ void orderlist_scroll_left_1_column()
 
   orderlist_redraw();
 }
+
 void orderlist_scroll_right_1_column()
 {
   if(orderlist_curr_col_pos == sizeof(orderlist_column_items) / sizeof(column_item_t) - 1)
@@ -5226,6 +5277,7 @@ void orderlist_goto_page_top()
 
   orderlist_redraw();
 }
+
 void orderlist_goto_page_bottom()
 {
   if(vOrders.size() == 0)
@@ -5254,6 +5306,7 @@ void orderlist_goto_page_bottom()
 
   orderlist_redraw();
 }
+
 void orderlist_goto_page_middle()
 {
   if(vOrders.size() == 0)
@@ -5292,6 +5345,7 @@ void orderlist_move_forward_1_page()
     orderlist_scroll_forward_1_line();
   }
 }
+
 void orderlist_move_backward_1_page()
 {
   int i;
@@ -5301,6 +5355,7 @@ void orderlist_move_backward_1_page()
     orderlist_scroll_backward_1_line();
   }
 }
+
 void orderlist_move_forward_half_page()
 {
   int i;
@@ -5310,6 +5365,7 @@ void orderlist_move_forward_half_page()
     orderlist_scroll_forward_1_line();
   }
 }
+
 void orderlist_move_backward_half_page()
 {
   int i;
@@ -5381,6 +5437,7 @@ void filllist_reset(const char *UserID)
     filllist_redraw();
   }
 }
+
 void filllist_display_title()
 {
   int y, x, pos, maxy, maxx;
@@ -5734,6 +5791,7 @@ void filllist_scroll_left_1_column()
 
   filllist_redraw();
 }
+
 void filllist_scroll_right_1_column()
 {
   if(filllist_curr_col_pos == sizeof(filllist_column_items) / sizeof(column_item_t) - 1)
@@ -5938,6 +5996,7 @@ void filllist_goto_page_top()
 
   filllist_redraw();
 }
+
 void filllist_goto_page_bottom()
 {
   if(vTrades.size() == 0)
@@ -5966,6 +6025,7 @@ void filllist_goto_page_bottom()
 
   filllist_redraw();
 }
+
 void filllist_goto_page_middle()
 {
   if(vTrades.size() == 0)
@@ -6004,6 +6064,7 @@ void filllist_move_forward_1_page()
     filllist_scroll_forward_1_line();
   }
 }
+
 void filllist_move_backward_1_page()
 {
   int i;
@@ -6013,6 +6074,7 @@ void filllist_move_backward_1_page()
     filllist_scroll_backward_1_line();
   }
 }
+
 void filllist_move_forward_half_page()
 {
   int i;
@@ -6022,6 +6084,7 @@ void filllist_move_forward_half_page()
     filllist_scroll_forward_1_line();
   }
 }
+
 void filllist_move_backward_half_page()
 {
   int i;
@@ -6080,6 +6143,7 @@ void positionlist_reset()
     positionlist_redraw();
   }
 }
+
 void positionlist_display_title()
 {
   int y, x, pos, maxy, maxx;
@@ -6684,6 +6748,7 @@ void positionlist_goto_page_top()
 
   positionlist_redraw();
 }
+
 void positionlist_goto_page_bottom()
 {
   if(vPositions.size() == 0)
@@ -6712,6 +6777,7 @@ void positionlist_goto_page_bottom()
 
   positionlist_redraw();
 }
+
 void positionlist_goto_page_middle()
 {
   if(vPositions.size() == 0)
@@ -6750,6 +6816,7 @@ void positionlist_move_forward_1_page()
     positionlist_scroll_forward_1_line();
   }
 }
+
 void positionlist_move_backward_1_page()
 {
   int i;
@@ -6759,6 +6826,7 @@ void positionlist_move_backward_1_page()
     positionlist_scroll_backward_1_line();
   }
 }
+
 void positionlist_move_forward_half_page()
 {
   int i;
@@ -6768,6 +6836,7 @@ void positionlist_move_forward_half_page()
     positionlist_scroll_forward_1_line();
   }
 }
+
 void positionlist_move_backward_half_page()
 {
   int i;
@@ -6821,6 +6890,7 @@ void acclist_reset(const char *UserID)
 // 	vAccounts.clear();
 // 	acclist_redraw();
 }
+
 void acclist_display_title()
 {
   int y, x, pos, maxy, maxx;
@@ -7161,6 +7231,7 @@ void acclist_scroll_left_1_column()
 
   acclist_redraw();
 }
+
 void acclist_scroll_right_1_column()
 {
   if(acclist_curr_col_pos == sizeof(acclist_column_items) / sizeof(column_item_t) - 1)
@@ -7365,6 +7436,7 @@ void acclist_goto_page_top()
 
   acclist_redraw();
 }
+
 void acclist_goto_page_bottom()
 {
   if(vAccounts.size() == 0)
@@ -7393,6 +7465,7 @@ void acclist_goto_page_bottom()
 
   acclist_redraw();
 }
+
 void acclist_goto_page_middle()
 {
   if(vAccounts.size() == 0)
@@ -7431,6 +7504,7 @@ void acclist_move_forward_1_page()
     acclist_scroll_forward_1_line();
   }
 }
+
 void acclist_move_backward_1_page()
 {
   int i;
@@ -7440,6 +7514,7 @@ void acclist_move_backward_1_page()
     acclist_scroll_backward_1_line();
   }
 }
+
 void acclist_move_forward_half_page()
 {
   int i;
@@ -7449,6 +7524,7 @@ void acclist_move_forward_half_page()
     acclist_scroll_forward_1_line();
   }
 }
+
 void acclist_move_backward_half_page()
 {
   int i;
@@ -7496,6 +7572,7 @@ void column_settings_refresh_screen()
     mvchgat(column_settings_curr_line, 0, -1, A_REVERSE, 0, NULL);
   }
 }
+
 void symbol_refresh_screen()
 {
   int i, y, x;
@@ -7761,6 +7838,7 @@ void display_title()
     }
   }
 }
+
 void order_display_title()
 {
   if(working_window != WIN_ORDER)
@@ -7960,6 +8038,7 @@ void column_settings_display_title()
   clrtoeol();
   printw("使用空格键选择显示项，使用+/-调整显示顺序");
 }
+
 void symbol_display_title()
 {
   int y, x;
@@ -8095,6 +8174,7 @@ void on_key_pressed(int ch)
     exit(0);
   }
 }
+
 int input_parse(int *num, int *cmd)
 {
   const char *p;
@@ -8418,6 +8498,7 @@ int on_key_pressed_mainboard(int ch)
 
   return 0;
 }
+
 int goto_mainboard_window_from_order()
 {
   char *ppInstrumentID[1];
@@ -8444,6 +8525,7 @@ int goto_mainboard_window_from_order()
 
   return 0;
 }
+
 int goto_orderlist_window_from_order()
 {
 
@@ -8705,6 +8787,7 @@ int goto_mainboard_window_from_column_settings()
 
   return 0;
 }
+
 int goto_mainboard_window_from_symbol()
 {
   char *ppInstrumentID[1];
@@ -9096,6 +9179,7 @@ int on_key_pressed_order(int ch)
 
   return 0;
 }
+
 void order_open_last_symbol()
 {
   for(size_t i = 0; i < vDepthMarketDatas.size(); i++)
@@ -9114,6 +9198,7 @@ void order_open_last_symbol()
     }
   }
 }
+
 int input_parse_favorite(int *num, int *cmd)
 {
   const char *p;
@@ -9187,10 +9272,12 @@ int input_parse_favorite(int *num, int *cmd)
 
   return 0;
 }
+
 int on_key_pressed_favorite(int ch)
 {
   return 0;
 }
+
 int input_parse_column_settings(int *num, int *cmd)
 {
   const char *p;
@@ -9264,6 +9351,7 @@ int input_parse_column_settings(int *num, int *cmd)
 
   return 0;
 }
+
 int on_key_pressed_column_settings(int ch)
 {
   int Num, Cmd;
@@ -9337,6 +9425,7 @@ int on_key_pressed_column_settings(int ch)
   column_settings_display_status();
   return 0;
 }
+
 int input_parse_orderlist(int *num, int *cmd)
 {
   const char *p;
@@ -9569,6 +9658,7 @@ int on_key_pressed_orderlist(int ch)
 
   return 0;
 }
+
 int input_parse_filllist(int *num, int *cmd)
 {
   const char *p;
@@ -9801,6 +9891,7 @@ int on_key_pressed_filllist(int ch)
 
   return 0;
 }
+
 int input_parse_positionlist(int *num, int *cmd)
 {
   const char *p;
@@ -10033,6 +10124,7 @@ int on_key_pressed_positionlist(int ch)
 
   return 0;
 }
+
 int input_parse_acclist(int *num, int *cmd)
 {
   const char *p;
@@ -10265,6 +10357,7 @@ int on_key_pressed_acclist(int ch)
 
   return 0;
 }
+
 int input_parse_log(int *num, int *cmd)
 {
   const char *p;
@@ -10980,6 +11073,7 @@ void CTradeRsp::HandleFrontConnected()
     m_pTradeReq->ReqUserLogin(&Req, 0);
   }
 }
+
 void CTradeRsp::HandleFrontDisconnected(int nReason)
 {
   status_print("交易通道已断开");
@@ -11023,6 +11117,7 @@ void CTradeRsp::HandleFrontDisconnected(int nReason)
     break;
   }
 }
+
 void CTradeRsp::HandleRspAuthenticate(CThostFtdcRspAuthenticateField &RspAuthenticateField, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast)
 {
   if(RspInfo.ErrorID != 0)
@@ -11113,10 +11208,12 @@ void CTradeRsp::HandleRspUserLogin(CThostFtdcRspUserLoginField &RspUserLogin, CT
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
   }
 }
+
 void CTradeRsp::HandleRspUserLogout(CThostFtdcUserLogoutField &UserLogout, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast)
 {
 
 }
+
 void CTradeRsp::HandleRspQryInstrument(CThostFtdcInstrumentField &Instrument, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast)
 {
   int index;
@@ -11239,6 +11336,7 @@ void CTradeRsp::HandleRspQryOrder(CThostFtdcOrderField &Order, CThostFtdcRspInfo
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
   }
 }
+
 void CTradeRsp::HandleRspQryTrade(CThostFtdcTradeField &Trade, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast)
 {
   if(RspInfo.ErrorID != 0)
@@ -12105,6 +12203,7 @@ void CTradeRsp::HandleErrRtnOrderInsert(CThostFtdcInputOrderField &InputOrder, C
     }
   }
 }
+
 void CTradeRsp::HandleErrRtnOrderAction(CThostFtdcOrderActionField &OrderAction, CThostFtdcRspInfoField &RspInfo)
 {
   if(strlen(OrderAction.InstrumentID) > 0)
@@ -12194,6 +12293,7 @@ void CMarketRsp::HandleFrontDisconnected(int nReason)
     break;
   }
 }
+
 void CMarketRsp::HandleRspUserLogin(CThostFtdcRspUserLoginField &RspUserLogin, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast)
 {
   if(RspInfo.ErrorID != 0)
@@ -12230,6 +12330,7 @@ void CMarketRsp::HandleRspUserLogin(CThostFtdcRspUserLoginField &RspUserLogin, C
     break;
   }
 }
+
 void CMarketRsp::HandleRspUserLogout(CThostFtdcUserLogoutField &UserLogout, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast)
 {
 }
@@ -12266,6 +12367,7 @@ void CMarketRsp::HandleRtnDepthMarketData(CThostFtdcDepthMarketDataField &DepthM
     break;
   }
 }
+
 int subscribe(size_t index)
 {
   switch(working_window)
@@ -12317,6 +12419,7 @@ int subscribe(size_t index)
 
   return 0;
 }
+
 int unsubscribe(size_t index)
 {
   char *ppInstrumentID[1];
@@ -12477,6 +12580,7 @@ void corner_choose_item()
     refresh_screen();
   }
 }
+
 int on_key_pressed_corner(int ch)
 {
   int Num, Cmd;
@@ -12555,6 +12659,7 @@ void corner_research()
   corner_curr_pos = 0, corner_curr_col_pos = 0;
   corner_redraw();
 }
+
 void corner_move_left_1_pos()
 {
   if(corner_curr_col != 1)
@@ -12904,6 +13009,7 @@ void order_corner_choose_item()
     order_refresh_screen();
   }
 }
+
 int order_on_key_pressed_corner(int ch)
 {
   int Num, Cmd;
@@ -12982,6 +13088,7 @@ void order_corner_research()
   order_corner_curr_pos = 0, order_corner_curr_col_pos = 0;
   order_corner_redraw();
 }
+
 void order_corner_move_left_1_pos()
 {
   if(order_corner_curr_col != 1)
