@@ -25,165 +25,166 @@
 #define WORKING_STATUS_NONE		0
 #define WORKING_STATUS_WORKING	1
 
-class CTradeRsp:public CThostFtdcTraderSpi
+class CTradeRsp: public CThostFtdcTraderSpi
 {
 public:
-	CTradeRsp();
-	~CTradeRsp();
+  CTradeRsp();
+  ~CTradeRsp();
 
-	//已连接
-	void OnFrontConnected();
-	
-	//未连接
-	void OnFrontDisconnected(int nReason);
-	
-	///认证响应
-	void OnRspAuthenticate(CThostFtdcRspAuthenticateField *pRspAuthenticateField, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+  //已连接
+  void OnFrontConnected();
 
-	//登录应答
-	void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,CThostFtdcRspInfoField *pRspInfo,int nRequestID,bool bIsLast);
-	
-	//登出应答
-	void OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout,CThostFtdcRspInfoField *pRspInfo,int nRequestID,bool bIsLast);
-	
-	// 查询合约列表
-	void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+  //未连接
+  void OnFrontDisconnected(int nReason);
 
-	// 查询行情列表
-	void OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+  ///认证响应
+  void OnRspAuthenticate(CThostFtdcRspAuthenticateField *pRspAuthenticateField, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	// 查询委托列表
-	void OnRspQryOrder(CThostFtdcOrderField *pOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+  //登录应答
+  void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	// 查询成交列表
-	void OnRspQryTrade(CThostFtdcTradeField *pTrade, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+  //登出应答
+  void OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	// 查询持仓
-	void OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *pInvestorPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+  // 查询合约列表
+  void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	// 查询持仓明细
-	void OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+  // 查询行情列表
+  void OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	///请求查询资金账户响应
-	void OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+  // 查询委托列表
+  void OnRspQryOrder(CThostFtdcOrderField *pOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	///报单录入请求响应
-	void OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-		
-	///报单操作请求响应
-	void OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+  // 查询成交列表
+  void OnRspQryTrade(CThostFtdcTradeField *pTrade, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	// 委托回报
-	void OnRtnOrder(CThostFtdcOrderField *pOrder);
+  // 查询持仓
+  void OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *pInvestorPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	// 成交回报
-	void OnRtnTrade(CThostFtdcTradeField *pTrade);
+  // 查询持仓明细
+  void OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	// 报单错误
-	void OnErrRtnOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo);
+  ///请求查询资金账户响应
+  void OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	// 撤单错误回报
-	void OnErrRtnOrderAction(CThostFtdcOrderActionField *pOrderAction, CThostFtdcRspInfoField *pRspInfo);
+  ///报单录入请求响应
+  void OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+  ///报单操作请求响应
+  void OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+  // 委托回报
+  void OnRtnOrder(CThostFtdcOrderField *pOrder);
+
+  // 成交回报
+  void OnRtnTrade(CThostFtdcTradeField *pTrade);
+
+  // 报单错误
+  void OnErrRtnOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo);
+
+  // 撤单错误回报
+  void OnErrRtnOrderAction(CThostFtdcOrderActionField *pOrderAction, CThostFtdcRspInfoField *pRspInfo);
 
 
-	void HandleFrontDisconnected(int nReason);
-	void HandleFrontConnected();
-	void HandleRspAuthenticate(CThostFtdcRspAuthenticateField& RspAuthenticateField, CThostFtdcRspInfoField& RspInfo, int nRequestID, bool bIsLast);
-	void HandleRspUserLogin(CThostFtdcRspUserLoginField& RspUserLogin,CThostFtdcRspInfoField& RspInfo,int nRequestID,bool bIsLast);
-	void HandleRspUserLogout(CThostFtdcUserLogoutField& UserLogout,CThostFtdcRspInfoField& RspInfo,int nRequestID,bool bIsLast);
-	void HandleRspQryInstrument(CThostFtdcInstrumentField& Instrument, CThostFtdcRspInfoField& RspInfo, int nRequestID, bool bIsLast);
-	void HandleRspQryOrder(CThostFtdcOrderField& Order, CThostFtdcRspInfoField& RspInfo, int nRequestID, bool bIsLast);
-	void HandleRspQryTrade(CThostFtdcTradeField& Trade, CThostFtdcRspInfoField& RspInfo, int nRequestID, bool bIsLast);
-	void HandleRspQryInvestorPosition(CThostFtdcInvestorPositionField& InvestorPosition, CThostFtdcRspInfoField& RspInfo, int nRequestID, bool bIsLast);
-	void HandleRspQryTradingAccount(CThostFtdcTradingAccountField& TradingAccount, CThostFtdcRspInfoField& RspInfo, int nRequestID, bool bIsLast);
-	void HandleRtnOrder(CThostFtdcOrderField& Order);
-	void HandleRtnTrade(CThostFtdcTradeField& Trade);
-	void HandleErrRtnOrderInsert(CThostFtdcInputOrderField& InputOrder, CThostFtdcRspInfoField& RspInfo);
-	void HandleErrRtnOrderAction(CThostFtdcOrderActionField& OrderAction, CThostFtdcRspInfoField& RspInfo);
-	void HandleRspOrderInsert(CThostFtdcInputOrderField& InputOrder, CThostFtdcRspInfoField& RspInfo, int nRequestID, bool bIsLast);
-	void HandleRspOrderAction(CThostFtdcInputOrderActionField& InputOrderAction, CThostFtdcRspInfoField& RspInfo, int nRequestID, bool bIsLast);
+  void HandleFrontDisconnected(int nReason);
+  void HandleFrontConnected();
+  void HandleRspAuthenticate(CThostFtdcRspAuthenticateField &RspAuthenticateField, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRspUserLogin(CThostFtdcRspUserLoginField &RspUserLogin, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRspUserLogout(CThostFtdcUserLogoutField &UserLogout, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRspQryInstrument(CThostFtdcInstrumentField &Instrument, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRspQryOrder(CThostFtdcOrderField &Order, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRspQryTrade(CThostFtdcTradeField &Trade, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRspQryInvestorPosition(CThostFtdcInvestorPositionField &InvestorPosition, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRspQryTradingAccount(CThostFtdcTradingAccountField &TradingAccount, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRtnOrder(CThostFtdcOrderField &Order);
+  void HandleRtnTrade(CThostFtdcTradeField &Trade);
+  void HandleErrRtnOrderInsert(CThostFtdcInputOrderField &InputOrder, CThostFtdcRspInfoField &RspInfo);
+  void HandleErrRtnOrderAction(CThostFtdcOrderActionField &OrderAction, CThostFtdcRspInfoField &RspInfo);
+  void HandleRspOrderInsert(CThostFtdcInputOrderField &InputOrder, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRspOrderAction(CThostFtdcInputOrderActionField &InputOrderAction, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
 
-	int FrontID;
-	int SessionID;
-	int OrderRef;
-	CThostFtdcTraderApi *m_pTradeReq;
-	TThostFtdcUserIDType UserID;
-	TThostFtdcPasswordType Password;
-	TThostFtdcBrokerIDType BrokerID;
-	TThostFtdcDateType TradingDay;
-	TThostFtdcProductInfoType	UserProductInfo;
-	TThostFtdcIPAddressType		ClientIPAddress;
-	TThostFtdcMacAddressType	MacAddress;
-	TThostFtdcLoginRemarkType	LoginRemark;
-	TThostFtdcAuthCodeType	AuthCode;
-	TThostFtdcAppIDType	AppID;
-	std::vector<CThostFtdcOrderField> m_mMovingOrders;
-	std::vector<CThostFtdcInvestorPositionField> m_vInvestorPositions;
+  int FrontID;
+  int SessionID;
+  int OrderRef;
+  CThostFtdcTraderApi *m_pTradeReq;
+  TThostFtdcUserIDType UserID;
+  TThostFtdcPasswordType Password;
+  TThostFtdcBrokerIDType BrokerID;
+  TThostFtdcDateType TradingDay;
+  TThostFtdcProductInfoType	UserProductInfo;
+  TThostFtdcIPAddressType		ClientIPAddress;
+  TThostFtdcMacAddressType	MacAddress;
+  TThostFtdcLoginRemarkType	LoginRemark;
+  TThostFtdcAuthCodeType	AuthCode;
+  TThostFtdcAppIDType	AppID;
+  std::vector<CThostFtdcOrderField> m_mMovingOrders;
+  std::vector<CThostFtdcInvestorPositionField> m_vInvestorPositions;
 };
-class CMarketRsp:public CThostFtdcMdSpi
+class CMarketRsp: public CThostFtdcMdSpi
 {
 public:
-	CMarketRsp();
-	~CMarketRsp();
+  CMarketRsp();
+  ~CMarketRsp();
 
-	//已连接
-	void OnFrontConnected();
-	
-	//未连接
-	void OnFrontDisconnected(int nReason);
-	
-	//登录应答
-	void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,CThostFtdcRspInfoField *pRspInfo,int nRequestID,bool bIsLast);
-	
-	//登出应答
-	void OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout,CThostFtdcRspInfoField *pRspInfo,int nRequestID,bool bIsLast);
-	
-	//定阅应答
-	void OnRspSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-	
-	//退订应答
-	void OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-	
-	//行情服务的深度行情通知
-	void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData);
+  //已连接
+  void OnFrontConnected();
+
+  //未连接
+  void OnFrontDisconnected(int nReason);
+
+  //登录应答
+  void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+  //登出应答
+  void OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+  //定阅应答
+  void OnRspSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+  //退订应答
+  void OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+
+  //行情服务的深度行情通知
+  void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData);
 
 
-	void HandleFrontConnected();
-	void HandleFrontDisconnected(int nReason);
-	void HandleRspUserLogin(CThostFtdcRspUserLoginField& RspUserLogin,CThostFtdcRspInfoField& RspInfo,int nRequestID,bool bIsLast);
-	void HandleRspUserLogout(CThostFtdcUserLogoutField& UserLogout,CThostFtdcRspInfoField& RspInfo,int nRequestID,bool bIsLast);
-	void HandleRtnDepthMarketData(CThostFtdcDepthMarketDataField& DepthMarketData);
+  void HandleFrontConnected();
+  void HandleFrontDisconnected(int nReason);
+  void HandleRspUserLogin(CThostFtdcRspUserLoginField &RspUserLogin, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRspUserLogout(CThostFtdcUserLogoutField &UserLogout, CThostFtdcRspInfoField &RspInfo, int nRequestID, bool bIsLast);
+  void HandleRtnDepthMarketData(CThostFtdcDepthMarketDataField &DepthMarketData);
 
-	CThostFtdcMdApi *m_pMarketReq;
-	TThostFtdcUserIDType UserID;
-	TThostFtdcPasswordType Password;
-	TThostFtdcBrokerIDType BrokerID;
+  CThostFtdcMdApi *m_pMarketReq;
+  TThostFtdcUserIDType UserID;
+  TThostFtdcPasswordType Password;
+  TThostFtdcBrokerIDType BrokerID;
 };
 
-typedef struct {
-	TThostFtdcBrokerIDType BrokerID;
-	TThostFtdcInvestorIDType InvestorID;
-	TThostFtdcExchangeIDType ExchangeID;
-	TThostFtdcInstrumentIDType InstrumentID;
-	int Volume;
-	double Price;
-	double ProfitLoss;
-	double Margin;
-	double Balance;
-	int BuyVolume;
-	double AvgBuyPrice;
-	double BuyProfitLoss;
-	int TodayBuyVolume;
-	int FrozenBuyVolume;
-	int TodayFrozenBuyVolume;
-	int BuyingVolume;
-	int SellVolume;
-	double AvgSellPrice;
-	double SellProfitLoss;
-	int TodaySellVolume;
-	int FrozenSellVolume;
-	int TodayFrozenSellVolume;
-	int SellingVolume;
+typedef struct
+{
+  TThostFtdcBrokerIDType BrokerID;
+  TThostFtdcInvestorIDType InvestorID;
+  TThostFtdcExchangeIDType ExchangeID;
+  TThostFtdcInstrumentIDType InstrumentID;
+  int Volume;
+  double Price;
+  double ProfitLoss;
+  double Margin;
+  double Balance;
+  int BuyVolume;
+  double AvgBuyPrice;
+  double BuyProfitLoss;
+  int TodayBuyVolume;
+  int FrozenBuyVolume;
+  int TodayFrozenBuyVolume;
+  int BuyingVolume;
+  int SellVolume;
+  double AvgSellPrice;
+  double SellProfitLoss;
+  int TodaySellVolume;
+  int FrozenSellVolume;
+  int TodayFrozenSellVolume;
+  int SellingVolume;
 } stPosition_t;
 
 
@@ -196,14 +197,14 @@ void time_thread();
 void work_thread();
 void HandleTickTimeout();
 void HandleStatusClear();
-double GetProfitLoss(const char* InstrumentID);
-double GetBuyProfitLoss(const char* InstrumentID);
-double GetSellProfitLoss(const char* InstrumentID);
-double GetPositionBalance(const char* InstrumentID);
-stPosition_t& GetPosition(const char* InstrumentID);
-CThostFtdcInstrumentField& GetInstrument(const char* InstrumentID);
-CThostFtdcDepthMarketDataField& GetDepthMarketData(const char* InstrumentID);
-int GetPrecision(const char* InstrumentID);
+double GetProfitLoss(const char *InstrumentID);
+double GetBuyProfitLoss(const char *InstrumentID);
+double GetSellProfitLoss(const char *InstrumentID);
+double GetPositionBalance(const char *InstrumentID);
+stPosition_t &GetPosition(const char *InstrumentID);
+CThostFtdcInstrumentField &GetInstrument(const char *InstrumentID);
+CThostFtdcDepthMarketDataField &GetDepthMarketData(const char *InstrumentID);
+int GetPrecision(const char *InstrumentID);
 
 // Main Board
 void refresh_screen();
@@ -211,7 +212,7 @@ void display_title();
 void display_status();
 void display_quotation(size_t index);
 int on_key_pressed_mainboard(int ch);
-int input_parse(int *num,int *cmd);
+int input_parse(int *num, int *cmd);
 int goto_order_window_from_mainboard();
 int goto_column_settings_window_from_mainboard();
 int goto_symbol_window_from_mainboard();
@@ -294,10 +295,10 @@ void order_revert_at_market();
 void order_cancel_orders();
 void order_cancel_all_orders();
 void order_cancel_orders_at_price(double price);
-void order_buy_at_limit_price(double price,unsigned int n);
-void order_sell_at_limit_price(double price,unsigned int n);
-char getOrderOffsetFlag(const char* szInstrument,char cDirection,unsigned int nQty,unsigned int &nOpen,unsigned int &nClose,unsigned int &nCloseToday);
-int OrderInsert(const char* InstrumentID,char BSFlag,char OCFlag,double Price,unsigned int Qty);
+void order_buy_at_limit_price(double price, unsigned int n);
+void order_sell_at_limit_price(double price, unsigned int n);
+char getOrderOffsetFlag(const char *szInstrument, char cDirection, unsigned int nQty, unsigned int &nOpen, unsigned int &nClose, unsigned int &nCloseToday);
+int OrderInsert(const char *InstrumentID, char BSFlag, char OCFlag, double Price, unsigned int Qty);
 void order_open_last_symbol();
 void order_move_orders();
 void order_move_complete();
@@ -373,7 +374,7 @@ void positionlist_display_status();
 void positionlist_display_focus();
 void positionlist_redraw();
 void positionlist_reset();
-void positionlist_display_position(const char* szInstrumentID);
+void positionlist_display_position(const char *szInstrumentID);
 int on_key_pressed_positionlist(int ch);
 int goto_mainboard_window_from_positionlist();
 int goto_order_window_from_positionlist();
@@ -404,7 +405,7 @@ void acclist_display_status();
 void acclist_display_focus();
 void acclist_redraw();
 void acclist_reset(const char *UserID);
-void acclist_display_acc(const char *szBrokerID,const char *szAccID);
+void acclist_display_acc(const char *szBrokerID, const char *szAccID);
 int on_key_pressed_acclist(int ch);
 int goto_mainboard_window_from_acclist();
 int goto_order_window_from_acclist();
@@ -463,7 +464,7 @@ void corner_move_left_1_pos();
 void corner_move_right_1_pos();
 void corner_delete_char_before_current_pos();
 void corner_delete_char_at_current_pos();
-int input_parse_corner(int *num,int *cmd);
+int input_parse_corner(int *num, int *cmd);
 void corner_move_forward_1_line();
 void corner_move_backward_1_line();
 void corner_research();
@@ -482,7 +483,7 @@ void order_corner_move_left_1_pos();
 void order_corner_move_right_1_pos();
 void order_corner_delete_char_before_current_pos();
 void order_corner_delete_char_at_current_pos();
-int order_input_parse_corner(int *num,int *cmd);
+int order_input_parse_corner(int *num, int *cmd);
 void order_corner_move_forward_1_line();
 void order_corner_move_backward_1_line();
 void order_corner_research();
