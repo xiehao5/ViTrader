@@ -18,7 +18,11 @@ build/win32目录下，进入命令行执行nmake，或打开VS2019工程编译�
 
 Linux：
 
-build/linux目录下，执行make
+build/linux目录下，执行make, 需要提前安装 `sudo apt-get install libncurses-dev`
+
+运行前，需要执行以下命令，让系统搜索当前路径下的so库
+
+`export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.`
 
 MacOSX:
 
