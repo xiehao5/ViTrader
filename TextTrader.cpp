@@ -3342,6 +3342,7 @@ int order_goto_price(double price)
   return 0;
 }
 
+// 订单界面重绘
 void order_redraw()
 {
   erase();
@@ -4279,6 +4280,7 @@ int OrderInsert(const char *InstrumentID, char BSFlag, char OCFlag, double Price
   return 0;
 }
 
+//取消界面上指定价格的订单
 void order_cancel_orders()
 {
   order_cancel_orders_at_price(order_curr_price);
@@ -4358,6 +4360,7 @@ void order_cancel_orders_at_price(double price)
   }
 }
 
+// 撤单所有未成交订单
 void order_cancel_all_orders()
 {
   if(order_symbol_index < 0)
@@ -12312,7 +12315,8 @@ void CMarketRsp::HandleRspUserLogin(CThostFtdcRspUserLoginField &RspUserLogin, C
   {
   case WIN_MAINBOARD:
   {
-    for(size_t i = curr_pos; i < vDepthMarketDatas.size() && i < curr_pos + max_lines; i++)
+    int MarketDataSize = vDepthMarketDatas.size();
+    for(size_t i = curr_pos; i < MarketDataSize && i < curr_pos + max_lines; i++)
     {
       subscribe(i);
     }
